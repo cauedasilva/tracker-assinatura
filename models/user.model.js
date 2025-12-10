@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
     name: {
-        type: String, 
+        type: String,
         required: [true, 'User name is required'],
         trim: true,
         minLength: 2,
@@ -14,6 +14,15 @@ const userSchema = new mongoose.Schema({
         unique: true,
         trim: true,
         lowercase: true,
-        match: []
+        match: [/\S+@\S+\.\S+/, 'Please fill a valid email address']
+    },
+    password: {
+        type: String,
+        required: [true, 'User Password is required'],
+        minLength: 6
     }
-})
+}, { timestamps: true });
+
+const User = mongoose.model('User', userSchema)
+
+export default User;
