@@ -101,63 +101,37 @@ POST /api/v1/subscriptions
 
 Headers:
 
+json
 Authorization: Bearer <token>
-
 Content-Type: application/json
-
 
 Body:
 
+json
 {
-
   "name": "HBO",
-  
   "price": 20.99,
-  
   "currency": "BRL",
-  
   "frequency": "monthly",
-  
   "category": "tech",
-  
   "paymentMethod": "Debit Card",
-  
   "startDate": "2025-01-01T00:00:00.000Z"
-  
 }
 
 Resposta:
 
+json
 {
-
   "success": true,
-  
   "data": {
-  
     "_id": "693a0695bae7344ee885c171",
-    
     "name": "HBO",
-    
     "status": "expired",
-    
-    "currency": "BRL",
-    
-    "frequency": "monthly",
-    
     "renewalDate": "2025-01-31T00:00:00.000Z",
-    
-    "startDate": "2025-01-01T00:00:00.000Z",
-    
-    "user": "6938b7097c5657bcad3dea90",
-    
-    "createdAt": "2025-12-10T23:47:33.122Z",
-    
-    "updatedAt": "2025-12-10T23:47:33.122Z",
-    
-    "__v": 0
-    
+    "price": 20.99,
+    "currency": "USD",
+    "frequency": "monthly"
   }
-  
 }
 
 ### Objetivo do Projeto
