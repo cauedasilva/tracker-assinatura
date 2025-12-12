@@ -101,13 +101,13 @@ POST /api/v1/subscriptions
 
 Headers:
 
-json
+```json
 Authorization: Bearer <token>
 Content-Type: application/json
 
 Body:
 
-json
+```json
 {
   "name": "HBO",
   "price": 20.99,
@@ -120,7 +120,7 @@ json
 
 Resposta:
 
-json
+```json
 {
   "success": true,
   "data": {
