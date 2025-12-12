@@ -97,17 +97,16 @@ renewalDate
 user (referência para o dono da assinatura)
 
 ### Exemplo de Requisição (Criar Assinatura)
+```json
 POST /api/v1/subscriptions
 
 Headers:
 
-```json
 Authorization: Bearer <token>
 Content-Type: application/json
 
 Body:
 
-```json
 {
   "name": "HBO",
   "price": 20.99,
@@ -120,7 +119,6 @@ Body:
 
 Resposta:
 
-```json
 {
   "success": true,
   "data": {
@@ -133,6 +131,7 @@ Resposta:
     "frequency": "monthly"
   }
 }
+```
 
 ### Objetivo do Projeto
 
