@@ -13,7 +13,7 @@ Express.js — Framework para criação das rotas e estrutura do servidor
 
 MongoDB + Mongoose — Banco NoSQL + ODM para modelagem dos dados
 
-Autenticação & Segurança
+### Autenticação & Segurança
 
 JWT (jsonwebtoken) — Autenticação baseada em token
 
@@ -22,12 +22,6 @@ bcryptjs — Criptografia de senhas
 cookie-parser — Manipulação de cookies
 
 Arcjet Middleware — Proteção anti-bot / rate limiting
-
-### Utilidades
-
-dotenv — Variáveis de ambiente
-
-Nodemon (dev) — Auto reload em desenvolvimento
 
 ## Estrutura da API
 
@@ -133,15 +127,3 @@ Resposta:
   }
 }
 ```
-
-### Objetivo do Projeto
-
-O propósito dessa API é fornecer uma base sólida para um sistema de controle de assinaturas, podendo servir como backend para:
-
-Aplicações Web
-
-Aplicativos Mobile
-
-Dashboards financeiros
-
-Sistemas de controle de gastos
