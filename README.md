@@ -1,10 +1,10 @@
-## Tracker Assinatura – API
+# Tracker Assinatura – API
 
 O Tracker Assinatura é uma API RESTful desenvolvida com foco em gerenciamento de assinaturas, permitindo criar, listar, atualizar e excluir serviços assinados por um usuário.
 O projeto segue a arquitetura MEAN Stack, utilizando MongoDB, Express.js e Node.js — sem frontend incluso no repositório.
 
-### Tecnologias Utilizadas
-# Backend
+# Tecnologias Utilizadas
+## Backend
 
 Node.js — Ambiente de execução JavaScript.
 
@@ -22,7 +22,7 @@ cookie-parser — Manipulação de cookies.
 
 Arcjet Middleware — Proteção anti-bot e segurança adicional nas requisições.
 
-# Utilidades
+## Utilidades
 
 dotenv — Gerenciamento de variáveis de ambiente.
 
@@ -32,7 +32,7 @@ Nodemon (ambiente de desenvolvimento) — Auto-reload.
 
 A API fornece endpoints organizados em módulos:
 
-# /api/v1/auth
+### /api/v1/auth
 
 Registro de usuário
 
@@ -40,13 +40,13 @@ Login
 
 Geração e validação de JWT
 
- # /api/v1/users
+ ### /api/v1/users
 
 Detalhes do usuário
 
 CRUD básico (dependendo da implementação)
 
-# /api/v1/subscriptions
+### /api/v1/subscriptions
 
 Criação de assinaturas
 
@@ -58,7 +58,7 @@ Cálculo automático de próxima renovação
 
 Status dinâmico (ativa, cancelada ou expirada)
 
-# Banco de Dados
+### Banco de Dados
 
 A API utiliza MongoDB com modelos organizados para:
 
@@ -82,7 +82,7 @@ Datas de início e renovação
 
 Referência ao usuário proprietário
 
-# Objetivo do Projeto
+### Objetivo do Projeto
 
 O propósito dessa API é fornecer uma base sólida para um sistema completo de controle de assinaturas, podendo futuramente servir como backend para:
 
