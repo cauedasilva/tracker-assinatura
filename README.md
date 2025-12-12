@@ -1,7 +1,8 @@
 # Tracker Assinatura – API RESTful
 
-O Tracker Assinatura é uma API RESTful voltada para o gerenciamento de assinaturas.
-Permite registrar usuários, autenticar com JWT e realizar operações de CRUD em assinaturas como Netflix, HBO, Spotify, etc.
+Este projeto é uma API RESTful construída em Node.js com Express e MongoDB, tem como função principal o controle de assinaturas.
+A API gerencia serviços recorrentes, calcula automaticamente datas de renovação, controla status (ativo, cancelado ou expirado) e utiliza autenticação JWT para segurança.
+Este repositório representa exclusivamente o backend.
 
 # Tecnologias Utilizadas
 ### Backend
