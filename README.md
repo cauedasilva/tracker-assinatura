@@ -1,31 +1,31 @@
 # Tracker Assinatura – API RESTful
 
-Este projeto é uma API RESTful construída em Node.js com Express e MongoDB, tem como função principal o controle de assinaturas.
+Este projeto é uma API RESTful em Node.js com Express e MongoDB, tem como função principal o controle de assinaturas.
 A API gerencia serviços recorrentes, calcula automaticamente datas de renovação, controla status (ativo, cancelado ou expirado) e utiliza autenticação JWT para segurança.
-Este repositório representa exclusivamente o backend.
+Construí somente o backend.
 
 # Tecnologias Utilizadas
 ### Backend
 
-Node.js — Ambiente de execução JavaScript
+Node.js
 
-Express.js — Framework para criação das rotas e estrutura do servidor
+Express.js — Framework para criação das rotas
 
-MongoDB + Mongoose — Banco NoSQL + ODM para modelagem dos dados
+MongoDB + Mongoose — Banco NoSQL + ODM para modelagem
 
 ### Autenticação & Segurança
 
-JWT (jsonwebtoken) — Autenticação baseada em token
+JWT (jsonwebtoken) — Autenticação em token
 
 bcryptjs — Criptografia de senhas
 
 cookie-parser — Manipulação de cookies
 
-Arcjet Middleware — Proteção anti-bot / rate limiting
+Arcjet Middleware — Proteção anti-bot e rate limiting
 
 ## Estrutura da API
 
-A API segue uma estrutura modular com rotas organizadas em:
+A API segue uma estrutura com rotas organizadas em:
 
 ### /api/v1/auth
 
@@ -33,7 +33,7 @@ Registro de usuário
 
 Login
 
-Geração e validação de JWT
+Geração e validação do JWT
 
 ### /api/v1/users
 
@@ -53,11 +53,11 @@ Cancelar assinatura
 
 Cálculo automático da próxima renovação
 
-Status dinâmico: active, canceled, expired
+Status: active, canceled, expired
 
 ### Banco de Dados (MongoDB)
 
-A API utiliza dois modelos principais:
+A API utiliza dois modelos:
 
 #### User
 
@@ -89,7 +89,7 @@ startDate
 
 renewalDate
 
-user (referência para o dono da assinatura)
+user (referência para quem iniciou aa assinatura)
 
 ### Exemplo de Requisição (Criar Assinatura)
 
