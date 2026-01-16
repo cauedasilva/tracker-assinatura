@@ -150,6 +150,7 @@ Content-Type: application/json
 
 Body
 
+```json
 {
   "name": "HBO",
   "price": 20.99,
@@ -159,10 +160,11 @@ Body
   "paymentMethod": "Debit Card",
   "startDate": "2025-01-01T00:00:00.000Z"
 }
-
+```
 
 Resposta
 
+```json
 {
   "success": true,
   "data": {
@@ -175,3 +177,4 @@ Resposta
     "frequency": "monthly"
   }
 }
+```
