@@ -8,13 +8,19 @@ import errorMiddleware from './middlewares/error.middleware.js';
 import cookieParser from 'cookie-parser';
 import arcjetMiddleware from './middlewares/arcjet.middleware.js';
 import workflowRouter from './routes/workflow.routes.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(arcjetMiddleware);
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', userRouter);
@@ -24,11 +30,11 @@ app.use('/api/v1/workflows', workflowRouter);
 app.use(errorMiddleware);
 
 app.get('/', (req, res) => {
-    res.send('teste');
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 })
 
 app.listen(PORT, async () => {
-    console.log(`running on http://localhost:${PORT}/`)
+    console.log(`running on http://localhost:${PORT}/`);
     await connectToDatabase();
 })
 
