@@ -1,67 +1,113 @@
 # Tracker Assinatura – API RESTful
 
-Este projeto é uma API RESTful em Node.js com Express e MongoDB, tem como função principal o controle de assinaturas.
-A API gerencia serviços recorrentes, calcula automaticamente datas de renovação, controla status (ativo, cancelado ou expirado) e utiliza autenticação JWT para segurança.
-Construí somente o backend.
+Este projeto uma API RESTful desenvolvida em Node.js com Express e MongoDB, cujo objetivo é o controle de assinaturas recorrentes (streaming, SaaS e serviços em geral).
 
-# Tecnologias Utilizadas
+A API permite gerenciar serviços recorrentes, calcular automaticamente datas de renovação, controlar o status das assinaturas e utilizar autenticação JWT para proteger as rotas.
+
+O projeto possui um front-end básico em HTML, CSS e JavaScript, incluído apenas para demonstração do funcionamento do CRUD. O foco principal do projeto é o backend (API).
+
+## Funcionalidades
+
+Cadastro e autenticação de usuários
+
+Criação, edição, listagem e exclusão de assinaturas
+
+Cálculo automático da próxima data de renovação
+
+Controle de status da assinatura:
+
+active
+
+canceled
+
+expired
+
+Autenticação baseada em JWT
+
+Proteções básicas contra abuso (rate limiting e bot protection)
+
+## Tecnologias Utilizadas
 ### Backend
 
 Node.js
 
-Express.js — Framework para criação das rotas
+Express.js — Framework para criação de rotas
 
-MongoDB + Mongoose — Banco NoSQL + ODM para modelagem
+MongoDB — Banco de dados NoSQL
 
-### Autenticação & Segurança
+Mongoose — ODM para modelagem de dados
 
-JWT (jsonwebtoken) — Autenticação em token
+### Autenticação e Segurança
+
+JWT (jsonwebtoken) — Autenticação via token
 
 bcryptjs — Criptografia de senhas
 
 cookie-parser — Manipulação de cookies
 
-Arcjet Middleware — Proteção anti-bot e rate limiting
+Arcjet Middleware — Proteção contra bots e controle de requisições
+
+### Mensageria e Processamento Assíncrono
+
+QStash (Upstash) — Agendamento e execução de tarefas assíncronas, utilizado para fluxos automatizados e eventos relacionados às assinaturas
+
+### Front-end
+
+HTML
+
+CSS
+
+JavaScript puro
 
 ## Estrutura da API
+### Autenticação
 
-A API segue uma estrutura com rotas organizadas em:
+Base: /api/v1/auth
 
-### /api/v1/auth
+POST /sign-up — Registro de usuário
 
-Registro de usuário
+POST /sign-in — Login
 
-Login
+POST /sign-out — Logout
 
-Geração e validação do JWT
+### Usuários
 
-### /api/v1/users
+Base: /api/v1/users
 
-Detalhes do usuário
+GET / — Listar usuários
 
-CRUD básico
+GET /:id — Buscar usuário por ID
 
-### /api/v1/subscriptions
+POST / — Criar usuário
 
-Criar nova assinatura
+PUT /:id — Atualizar usuário
 
-Listar todas as assinaturas do usuário
+DELETE /:id — Remover usuário
 
-Atualizar assinatura
+### Assinaturas
 
-Cancelar assinatura
+Base: /api/v1/subscriptions
 
-Cálculo automático da próxima renovação
+POST / — Criar nova assinatura
 
-Status: active, canceled, expired
+GET / — Listar todas as assinaturas
 
-### Banco de Dados (MongoDB)
+GET /:id — Buscar assinatura por ID
 
-A API utiliza dois modelos:
+GET /user/:id — Listar assinaturas de um usuário
 
-#### User
+PUT /:id — Atualizar assinatura
 
-nome
+PUT /:id/cancel — Cancelar assinatura
+
+DELETE /:id — Excluir assinatura
+
+GET /upcoming-renewals — Listar próximas renovações
+
+## Modelos do Banco de Dados
+### User
+
+name
 
 email
 
@@ -69,7 +115,7 @@ password (hash)
 
 timestamps
 
-#### Subscription
+### Subscription
 
 name
 
@@ -89,19 +135,21 @@ startDate
 
 renewalDate
 
-user (referência para quem iniciou aa assinatura)
+user (referência ao usuário criador da assinatura)
 
-### Exemplo de Requisição (Criar Assinatura)
+## Exemplo de Requisição
+Criar Assinatura
 
 POST /api/v1/subscriptions
 
-Headers:
+Headers
 
-Authorization: Bearer <token>
+Authorization: Bearer <TOKEN>
 Content-Type: application/json
 
-Body:
-```json
+
+Body
+
 {
   "name": "HBO",
   "price": 20.99,
@@ -111,9 +159,10 @@ Body:
   "paymentMethod": "Debit Card",
   "startDate": "2025-01-01T00:00:00.000Z"
 }
-```
-Resposta:
-```json
+
+
+Resposta
+
 {
   "success": true,
   "data": {
@@ -122,8 +171,7 @@ Resposta:
     "status": "expired",
     "renewalDate": "2025-01-31T00:00:00.000Z",
     "price": 20.99,
-    "currency": "USD",
+    "currency": "BRL",
     "frequency": "monthly"
   }
 }
-```
