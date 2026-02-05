@@ -1,0 +1,116 @@
+<div class="register-container">
+  <div class="register-card">
+    <h1>Criar conta</h1>
+    <p class="subtitle">Comece a acompanhar suas assinaturas</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      @if (errorMessage) {
+        <div class="alert alert-error">
+          {{ errorMessage }}
+        </div>
+      }
+
+      <div class="form-group">
+        <label for="name">Nome completo</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          placeholder="João Silva"
+          [class.error]="name?.invalid && name?.touched"
+        />
+        @if (name?.invalid && name?.touched) {
+          <span class="error-text">
+            @if (name?.errors?.['required']) {
+              Nome é obrigatório
+            }
+            @if (name?.errors?.['minlength']) {
+              Nome deve ter pelo menos 2 caracteres
+            }
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="exemplo@email.com"
+          [class.error]="email?.invalid && email?.touched"
+        />
+        @if (email?.invalid && email?.touched) {
+          <span class="error-text">
+            @if (email?.errors?.['required']) {
+              Email é obrigatório
+            }
+            @if (email?.errors?.['email']) {
+              Por favor, insira um email válido
+            }
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="********"
+          [class.error]="password?.invalid && password?.touched"
+        />
+        @if (password?.invalid && password?.touched) {
+          <span class="error-text">
+            @if (password?.errors?.['required']) {
+              Senha é obrigatória
+            }
+            @if (password?.errors?.['minlength']) {
+              Senha deve ter pelo menos 6 caracteres
+            }
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirmar Senha</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          formControlName="confirmPassword"
+          placeholder="********"
+          [class.error]="confirmPassword?.invalid && confirmPassword?.touched"
+        />
+        @if (confirmPassword?.invalid && confirmPassword?.touched) {
+          <span class="error-text">
+            @if (confirmPassword?.errors?.['required']) {
+              Confirmar senha é obrigatório
+            }
+            @if (confirmPassword?.errors?.['passwordMismatch']) {
+              As senhas não coincidem
+            }
+          </span>
+        }
+      </div>
+
+      <button 
+        type="submit" 
+        class="btn btn-primary"
+        [disabled]="loading"
+      >
+        @if (loading) {
+          <span class="spinner"></span>
+          Criando conta...
+        } @else {
+          Criar conta
+        }
+      </button>
+    </form>
+
+    <p class="login-link">
+      Já tem uma conta?
+      <a routerLink="/sign-in">Faça login aqui</a>
+    </p>
+  </div>
+</div>

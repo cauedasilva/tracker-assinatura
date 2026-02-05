@@ -1,0 +1,117 @@
+<div class="subscription-form">
+  <h2>{{ isEdit ? 'Editar Assinatura' : 'Nova Assinatura' }}</h2>
+
+  <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
+    <div class="form-grid">
+      <div class="form-group full-width">
+        <label for="name">Nome do Serviço *</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          placeholder="Netflix, Spotify, etc."
+          [class.error]="name?.invalid && name?.touched"
+        />
+        @if (name?.invalid && name?.touched) {
+          <span class="error-text">Nome do serviço é obrigatório</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="price">Preço *</label>
+        <input
+          type="number"
+          id="price"
+          formControlName="price"
+          placeholder="0.00"
+          step="0.01"
+          [class.error]="price?.invalid && price?.touched"
+        />
+        @if (price?.invalid && price?.touched) {
+          <span class="error-text">
+            @if (price?.errors?.['required']) {
+              Preço é obrigatório
+            }
+            @if (price?.errors?.['min']) {
+              Preço deve ser positivo
+            }
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="currency">Moeda *</label>
+        <select id="currency" formControlName="currency">
+          @for (curr of currencies; track curr.value) {
+            <option [value]="curr.value">{{ curr.label }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="frequency">Frequência de Cobrança *</label>
+        <select id="frequency" formControlName="frequency">
+          @for (freq of frequencies; track freq.value) {
+            <option [value]="freq.value">{{ freq.label }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Categoria *</label>
+        <select 
+          id="category" 
+          formControlName="category"
+          [class.error]="category?.invalid && category?.touched"
+        >
+          <option value="">Selecione uma categoria</option>
+          @for (cat of categories; track cat.value) {
+            <option [value]="cat.value">{{ cat.label }}</option>
+          }
+        </select>
+        @if (category?.invalid && category?.touched) {
+          <span class="error-text">Por favor selecione uma categoria</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="paymentMethod">Método de Pagamento *</label>
+        <select 
+          id="paymentMethod" 
+          formControlName="paymentMethod"
+          [class.error]="paymentMethod?.invalid && paymentMethod?.touched"
+        >
+          <option value="">Selecione um método de pagamento</option>
+          @for (method of paymentMethods; track method) {
+            <option [value]="method">{{ method }}</option>
+          }
+        </select>
+        @if (paymentMethod?.invalid && paymentMethod?.touched) {
+          <span class="error-text">Por favor selecione um método de pagamento</span>
+        }
+      </div>
+
+      <div class="form-group full-width">
+        <label for="startDate">Data de Início *</label>
+        <input
+          type="date"
+          id="startDate"
+          formControlName="startDate"
+          [class.error]="startDate?.invalid && startDate?.touched"
+        />
+        @if (startDate?.invalid && startDate?.touched) {
+          <span class="error-text">Data de início é obrigatória</span>
+        }
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">
+        Cancelar
+      </button>
+      <button type="submit" class="btn btn-primary">
+        {{ isEdit ? 'Atualizar' : 'Criar' }} Assinatura
+      </button>
+    </div>
+  </form>
+</div>

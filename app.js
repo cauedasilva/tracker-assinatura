@@ -10,6 +10,7 @@ import arcjetMiddleware from './middlewares/arcjet.middleware.js';
 import workflowRouter from './routes/workflow.routes.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import cors from 'cors';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -21,6 +22,13 @@ app.use(cookieParser());
 app.use(arcjetMiddleware);
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cors({
+  origin: 'http://localhost:4200',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', userRouter);

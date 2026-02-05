@@ -6,13 +6,15 @@ import {
 
 const subscriptionRouter = Router();
 
-subscriptionRouter.get('/user/:id', authorize, getUserSubscriptions);
+subscriptionRouter.get('/me', authorize, getUserSubscriptions);
 subscriptionRouter.get('/upcoming-renewals', authorize, getUpcomingRenewals);
-subscriptionRouter.get('/', getAllSubscriptions);
-subscriptionRouter.get('/:id', getSubscription);
+
 subscriptionRouter.post('/', authorize, createSubscription);
 subscriptionRouter.put('/:id', authorize, updateSubscription);
 subscriptionRouter.put('/:id/cancel', authorize, cancelSubscription);
 subscriptionRouter.delete('/:id', authorize, deleteSubscription);
+
+subscriptionRouter.get('/', authorize, getAllSubscriptions);
+subscriptionRouter.get('/:id', authorize, getSubscription);
 
 export default subscriptionRouter;
