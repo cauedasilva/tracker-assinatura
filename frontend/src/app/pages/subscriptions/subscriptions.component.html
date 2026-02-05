@@ -1,0 +1,112 @@
+<div class="subscriptions-page">
+  <header class="page-header">
+    <div class="header-content">
+      <div>
+        <h1>Minhas assinaturas</h1>
+        @if (currentUser()) {
+          <p class="user-greeting">Bem vindo, {{ currentUser()!.name }}</p>
+        }
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-primary" (click)="openNewSubscriptionForm()">
+          Adicionar assinatura
+        </button>
+        <button class="btn btn-secondary" (click)="logout()">
+          Sair
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="stats-container">
+    <div class="stat-card">
+      <div class="stat-content">
+        <p class="stat-label">Total</p>
+        <p class="stat-value">{{ stats().total }}</p>
+      </div>
+    </div>
+
+    <div class="stat-card active">
+      <div class="stat-content">
+        <p class="stat-label">Ativas</p>
+        <p class="stat-value">{{ stats().active }}</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-content">
+        <p class="stat-label">Custo mensal</p>
+        <p class="stat-value">{{ getCurrencySymbol('BRL') }}{{ stats().monthlyTotal.toFixed(2) }}</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-content">
+        <p class="stat-label">Custo anual</p>
+        <p class="stat-value">{{ getCurrencySymbol('BRL') }}{{ stats().yearlyTotal.toFixed(2) }}</p>
+      </div>
+    </div>
+  </div>
+
+  @if (upcomingRenewals().length > 0) {
+    <div class="renewals-alert">
+      <div class="alert-content">
+        <h3>Próximas renovações</h3>
+        <p>Você tem {{ upcomingRenewals().length }} assinatura(s) renovando nos próximos 7 dias</p>
+      </div>
+    </div>
+  }
+
+  <div class="filters">
+    <button 
+      class="filter-btn" 
+      [class.active]="filterStatus() === 'all'"
+      (click)="setFilter('all')"
+    >
+      Todas ({{ stats().total }})
+    </button>
+    <button 
+      class="filter-btn" 
+      [class.active]="filterStatus() === 'active'"
+      (click)="setFilter('active')"
+    >
+      Ativas ({{ stats().active }})
+    </button>
+    <button 
+      class="filter-btn" 
+      [class.active]="filterStatus() === 'expired'"
+      (click)="setFilter('expired')"
+    >
+      Expiradas ({{ stats().expired }})
+    </button>
+    <button 
+      class="filter-btn" 
+      [class.active]="filterStatus() === 'canceled'"
+      (click)="setFilter('canceled')"
+    >
+      Canceladas ({{ stats().canceled }})
+    </button>
+  </div>
+
+  @if (showForm()) {
+    <div class="modal-overlay" (click)="closeForm()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <app-subscription-form
+          [subscription]="editingSubscription()"
+          [isEdit]="!!editingSubscription()"
+          (formSubmit)="handleFormSubmit($event)"
+          (formCancel)="closeForm()"
+        />
+      </div>
+    </div>
+  }
+
+  <div class="subscriptions-content">
+    <app-subscription-list
+      [subscriptions]="filteredSubscriptions()"
+      [loading]="loading()"
+      (editSubscription)="openEditForm($event)"
+      (deleteSubscription)="handleDelete($event)"
+    />
+  </div>
+</div>
