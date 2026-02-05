@@ -1,16 +1,20 @@
-# Tracker Assinatura – API RESTful
+# Tracker Assinatura – API RESTful + Front-end Angular
 
-Este projeto uma API RESTful desenvolvida em Node.js com Express e MongoDB, cujo objetivo é o controle de assinaturas recorrentes (streaming, SaaS e serviços em geral).
+API RESTful desenvolvida em Node.js com Express e MongoDB, juntamente com um front-end em Angular, cujo objetivo é o controle de assinaturas recorrentes.
 
-A API permite gerenciar serviços recorrentes, calcular automaticamente datas de renovação, controlar o status das assinaturas e utilizar autenticação JWT para proteger as rotas.
+A aplicação permite gerenciar serviços recorrentes, calcular automaticamente datas de renovação, controlar o status das assinaturas e utilizar autenticação JWT para proteger as rotas.
 
-O projeto possui um front-end básico em HTML, CSS e JavaScript, incluído apenas para demonstração do funcionamento do CRUD. O foco principal do projeto é o backend (API).
+O foco principal do projeto é o backend, porém o front-end em Angular foi desenvolvido para consumo real da API, autenticação de usuários e visualização das assinaturas.
 
 ## Funcionalidades
 
 Cadastro e autenticação de usuários
 
+Login e logout com JWT
+
 Criação, edição, listagem e exclusão de assinaturas
+
+Assinaturas associadas exclusivamente ao usuário autenticado
 
 Cálculo automático da próxima data de renovação
 
@@ -22,9 +26,11 @@ canceled
 
 expired
 
-Autenticação baseada em JWT
+Proteção de rotas com middleware de autenticação
 
 Proteções básicas contra abuso (rate limiting e bot protection)
+
+Processamento assíncrono de eventos relacionados às assinaturas
 
 ## Tecnologias Utilizadas
 ### Backend
@@ -39,7 +45,7 @@ Mongoose — ODM para modelagem de dados
 
 ### Autenticação e Segurança
 
-JWT (jsonwebtoken) — Autenticação via token
+JWT (jsonwebtoken) — Autenticação baseada em token
 
 bcryptjs — Criptografia de senhas
 
@@ -49,15 +55,21 @@ Arcjet Middleware — Proteção contra bots e controle de requisições
 
 ### Mensageria e Processamento Assíncrono
 
-QStash (Upstash) — Agendamento e execução de tarefas assíncronas, utilizado para fluxos automatizados e eventos relacionados às assinaturas
+QStash (Upstash) — Agendamento e execução de tarefas assíncronas
 
-### Front-end
+Front-end
 
-HTML
+Angular
 
-CSS
+TypeScript
 
-JavaScript puro
+### Angular Components
+
+HttpClient + Interceptors
+
+Signals para gerenciamento de estado
+
+JWT via Authorization Header
 
 ## Estrutura da API
 ### Autenticação
@@ -88,13 +100,13 @@ DELETE /:id — Remover usuário
 
 Base: /api/v1/subscriptions
 
+Todas as rotas protegidas exigem autenticação JWT.
+
 POST / — Criar nova assinatura
 
-GET / — Listar todas as assinaturas
+GET /me — Listar assinaturas do usuário autenticado
 
 GET /:id — Buscar assinatura por ID
-
-GET /user/:id — Listar assinaturas de um usuário
 
 PUT /:id — Atualizar assinatura
 
@@ -105,7 +117,7 @@ DELETE /:id — Excluir assinatura
 GET /upcoming-renewals — Listar próximas renovações
 
 ## Modelos do Banco de Dados
-### User
+User
 
 name
 
@@ -115,7 +127,7 @@ password (hash)
 
 timestamps
 
-### Subscription
+Subscription
 
 name
 
@@ -135,7 +147,7 @@ startDate
 
 renewalDate
 
-user (referência ao usuário criador da assinatura)
+user (referência ao usuário autenticado)
 
 ## Exemplo de Requisição
 Criar Assinatura
@@ -149,7 +161,6 @@ Content-Type: application/json
 
 
 Body
-
 ```json
 {
   "name": "HBO",
