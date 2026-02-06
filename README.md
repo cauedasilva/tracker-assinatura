@@ -57,7 +57,7 @@ Arcjet Middleware — Proteção contra bots e controle de requisições
 
 QStash (Upstash) — Agendamento e execução de tarefas assíncronas
 
-Front-end
+### Front-end
 
 Angular
 
