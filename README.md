@@ -117,7 +117,7 @@ DELETE /:id — Excluir assinatura
 GET /upcoming-renewals — Listar próximas renovações
 
 ## Modelos do Banco de Dados
-User
+### User
 
 name
 
@@ -127,7 +127,7 @@ password (hash)
 
 timestamps
 
-Subscription
+### Subscription
 
 name
 
