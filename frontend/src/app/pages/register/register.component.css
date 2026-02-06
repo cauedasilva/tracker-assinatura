@@ -1,5 +1,6 @@
 .register-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
@@ -81,6 +82,12 @@ input.error {
   border: 1px solid #fc8181;
 }
 
+.alert-success {
+  background-color: #c6f6d5;
+  color: #2f855a;
+  border: 1px solid #68d391;
+}
+
 .btn {
   width: 100%;
   padding: 0.875rem;
@@ -121,7 +128,9 @@ input.error {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .login-link {
@@ -139,6 +148,24 @@ input.error {
 
 .login-link a:hover {
   text-decoration: underline;
+}
+
+footer {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+footer div {
+  background-color: #3a2450;
+  border-radius: 8px;
+  padding: 1rem;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+footer p {
+  color: #ffffff;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 480px) {

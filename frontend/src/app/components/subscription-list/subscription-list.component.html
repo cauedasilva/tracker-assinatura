@@ -16,7 +16,7 @@
           <div class="card-header">
             <div class="service-info">
               <h3>{{ sub.name }}</h3>
-              <span class="category">{{ sub.category }}</span>
+              <span class="category">{{ getCategoryLabel(sub.category) }}</span>
             </div>
             <div class="card-actions">
               <button 
@@ -40,20 +40,20 @@
             <span class="price">
               {{ getCurrencySymbol(sub.currency) }}{{ sub.price }}
             </span>
-            <span class="frequency">/ {{ sub.frequency }}</span>
+            <span class="frequency">/ {{ getFrequencyLabel(sub.frequency) }}</span>
           </div>
 
           <div class="subscription-details">
             <div class="detail-row">
               <span class="detail-label">Status:</span>
               <span class="status-badge" [class]="getStatusClass(sub.status || 'active')">
-                {{ sub.status || 'active' }}
+                {{ getStatusLabel(sub.status || 'active') }}
               </span>
             </div>
 
             <div class="detail-row">
               <span class="detail-label">Pagamento:</span>
-              <span class="detail-value">{{ sub.paymentMethod }}</span>
+              <span class="detail-value">{{ getPaymentMethodLabel(sub.paymentMethod) }}</span>
             </div>
 
             @if (sub.renewalDate) {

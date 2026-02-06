@@ -83,7 +83,7 @@
         >
           <option value="">Selecione um método de pagamento</option>
           @for (method of paymentMethods; track method) {
-            <option [value]="method">{{ method }}</option>
+            <option [value]="method.value">{{ method.label }}</option>
           }
         </select>
         @if (paymentMethod?.invalid && paymentMethod?.touched) {

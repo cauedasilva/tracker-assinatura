@@ -5,105 +5,86 @@
 
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       @if (errorMessage) {
-        <div class="alert alert-error">
-          {{ errorMessage }}
-        </div>
+      <div class="alert alert-error">
+        {{ errorMessage }}
+      </div>
+      }
+      @if (successMessage) {
+      <div class="alert alert-success">
+        {{ successMessage }}
+      </div>  
       }
 
       <div class="form-group">
         <label for="name">Nome completo</label>
-        <input
-          type="text"
-          id="name"
-          formControlName="name"
-          placeholder="João Silva"
-          [class.error]="name?.invalid && name?.touched"
-        />
+        <input type="text" id="name" formControlName="name" placeholder="João Silva"
+          [class.error]="name?.invalid && name?.touched" />
         @if (name?.invalid && name?.touched) {
-          <span class="error-text">
-            @if (name?.errors?.['required']) {
-              Nome é obrigatório
-            }
-            @if (name?.errors?.['minlength']) {
-              Nome deve ter pelo menos 2 caracteres
-            }
-          </span>
+        <span class="error-text">
+          @if (name?.errors?.['required']) {
+          Nome é obrigatório
+          }
+          @if (name?.errors?.['minlength']) {
+          Nome deve ter pelo menos 2 caracteres
+          }
+        </span>
         }
       </div>
 
       <div class="form-group">
         <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          formControlName="email"
-          placeholder="exemplo@email.com"
-          [class.error]="email?.invalid && email?.touched"
-        />
+        <input type="email" id="email" formControlName="email" placeholder="exemplo@email.com"
+          [class.error]="email?.invalid && email?.touched" />
         @if (email?.invalid && email?.touched) {
-          <span class="error-text">
-            @if (email?.errors?.['required']) {
-              Email é obrigatório
-            }
-            @if (email?.errors?.['email']) {
-              Por favor, insira um email válido
-            }
-          </span>
+        <span class="error-text">
+          @if (email?.errors?.['required']) {
+          Email é obrigatório
+          }
+          @if (email?.errors?.['email']) {
+          Por favor, insira um email válido
+          }
+        </span>
         }
       </div>
 
       <div class="form-group">
         <label for="password">Senha</label>
-        <input
-          type="password"
-          id="password"
-          formControlName="password"
-          placeholder="********"
-          [class.error]="password?.invalid && password?.touched"
-        />
+        <input type="password" id="password" formControlName="password" placeholder="********"
+          [class.error]="password?.invalid && password?.touched" />
         @if (password?.invalid && password?.touched) {
-          <span class="error-text">
-            @if (password?.errors?.['required']) {
-              Senha é obrigatória
-            }
-            @if (password?.errors?.['minlength']) {
-              Senha deve ter pelo menos 6 caracteres
-            }
-          </span>
+        <span class="error-text">
+          @if (password?.errors?.['required']) {
+          Senha é obrigatória
+          }
+          @if (password?.errors?.['minlength']) {
+          Senha deve ter pelo menos 6 caracteres
+          }
+        </span>
         }
       </div>
 
       <div class="form-group">
         <label for="confirmPassword">Confirmar Senha</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          formControlName="confirmPassword"
-          placeholder="********"
-          [class.error]="confirmPassword?.invalid && confirmPassword?.touched"
-        />
+        <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="********"
+          [class.error]="confirmPassword?.invalid && confirmPassword?.touched" />
         @if (confirmPassword?.invalid && confirmPassword?.touched) {
-          <span class="error-text">
-            @if (confirmPassword?.errors?.['required']) {
-              Confirmar senha é obrigatório
-            }
-            @if (confirmPassword?.errors?.['passwordMismatch']) {
-              As senhas não coincidem
-            }
-          </span>
+        <span class="error-text">
+          @if (confirmPassword?.errors?.['required']) {
+          Confirmar senha é obrigatório
+          }
+          @if (confirmPassword?.errors?.['passwordMismatch']) {
+          As senhas não coincidem
+          }
+        </span>
         }
       </div>
 
-      <button 
-        type="submit" 
-        class="btn btn-primary"
-        [disabled]="loading"
-      >
+      <button type="submit" class="btn btn-primary" [disabled]="loading">
         @if (loading) {
-          <span class="spinner"></span>
-          Criando conta...
+        <span class="spinner"></span>
+        Criando conta...
         } @else {
-          Criar conta
+        Criar conta
         }
       </button>
     </form>
@@ -113,4 +94,11 @@
       <a routerLink="/sign-in">Faça login aqui</a>
     </p>
   </div>
+  <footer>
+    <div>
+      <p>Essa aplicação foi criada para fins de aprendizado e portfólio.</p>
+      <p>Por favor não use senhas, dados ou informações reais.</p>
+      <p>Os dados podem ser apagados a qualquer momento.</p>
+    </div>
+  </footer>
 </div>

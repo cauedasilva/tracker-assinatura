@@ -1,36 +1,83 @@
-import aj from '../config/arcjet.js';
-import { NODE_ENV } from '../config/env.js';
+import arcjet, { tokenBucket, detectBot } from "@arcjet/node";
+
+const aj = arcjet({
+    key: process.env.ARCJET_KEY,
+    rules: [
+        tokenBucket({
+            mode: "LIVE",
+            characteristics: ["ip.src"],
+            refillRate: 10,
+            interval: 10,
+            capacity: 100,
+        }),
+        detectBot({
+            mode: process.env.ARCJET_MODE || "DRY_RUN",
+            allow: [
+                "CATEGORY:SEARCH_ENGINE",
+                "LIKELY_AUTOMATED"
+            ],
+        }),
+    ],
+});
 
 const arcjetMiddleware = async (req, res, next) => {
+    const skipPaths = [
+        '/health',
+        '/api/health',
+        '/',
+        '/status',
+        '/favicon.ico'
+    ];
+
+    if (req.method === 'OPTIONS') {
+        return next();
+    }
+
+    if (skipPaths.includes(req.path)) {
+        return next();
+    }
+
+    if (process.env.DISABLE_ARCJET === 'true') {
+        return next();
+    }
+
+    if (!process.env.ARCJET_KEY) {
+        console.warn('ARCJET_KEY not set, skipping protection');
+        return next();
+    }
+
     try {
-        const decision = await aj.protect(req, { requested: 1 });
+        const decision = await aj.protect(req);
 
-        for (const result of decision.results) {
-            const reason = result.reason;
+        if (decision.isDenied() && process.env.ARCJET_MODE === "DRY_RUN") {
+            console.log("Arcjet would have blocked:", {
+                ip: req.ip,
+                path: req.path,
+                method: req.method,
+                reason: decision.reason,
+                userAgent: req.get('user-agent')?.substring(0, 100)
+            });
+            return next();
+        }
 
-            if (reason.type === "RATE_LIMIT" && reason.remaining <= 0) {
-                return res.status(429).json({
-                    error: "Rate limit exceeded",
-                    reset: reason.reset,
-                });
-            }
+        if (decision.isDenied()) {
+            console.log("Arcjet blocked request:", {
+                ip: req.ip,
+                path: req.path,
+                reason: decision.reason
+            });
 
-            if (NODE_ENV === "production") {
-                if (reason.type === "BOT" && !reason.allowed.includes("CATEGORY:SEARCH_ENGINE")) {
-                    return res.status(403).json({
-                        error: "Bot detected",
-                        reset: reason.reset
-                    });
-                }
-            }
-
+            return res.status(403).json({
+                error: "Forbidden",
+                message: "Request blocked by security system"
+            });
         }
 
         next();
     } catch (error) {
-        console.log(`Arcjet Middleware Error: ${error}`);
-        next(error);
+        console.error("Arcjet error:", error.message);
+        next();
     }
-}
+};
 
 export default arcjetMiddleware;

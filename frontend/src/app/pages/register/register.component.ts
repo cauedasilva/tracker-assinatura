@@ -19,6 +19,7 @@ export class RegisterComponent {
   registerForm: FormGroup;
   loading = false;
   errorMessage = '';
+  successMessage = '';
 
   constructor() {
     this.registerForm = this.fb.group({
@@ -57,11 +58,14 @@ export class RegisterComponent {
     this.authService.register(registerData).subscribe({
       next: (response) => {
         if (response.success) {
-          this.router.navigate(['/sign-in']);
+          this.successMessage = 'Cadastro realizado com sucesso! Redirecionando para login...';
+          setTimeout(() => {
+            this.router.navigate(['/sign-in']);
+          }, 2500);
         }
       },
       error: (error) => {
-        this.errorMessage = error.message || 'Registration failed. Please try again.';
+        this.errorMessage = error.message || 'Cadastro falhou. Por favor, tente novamente.';
         this.loading = false;
       },
       complete: () => {

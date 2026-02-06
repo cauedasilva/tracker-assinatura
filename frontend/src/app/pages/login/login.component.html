@@ -5,70 +5,63 @@
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       @if (errorMessage) {
-        <div class="alert alert-error">
-          {{ errorMessage }}
-        </div>
+      <div class="alert alert-error">
+        {{ errorMessage }}
+      </div>
       }
 
       <div class="form-group">
         <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          formControlName="email"
-          placeholder="exemplo@email.com"
-          [class.error]="email?.invalid && email?.touched"
-        />
+        <input type="email" id="email" formControlName="email" placeholder="exemplo@email.com"
+          [class.error]="email?.invalid && email?.touched" />
         @if (email?.invalid && email?.touched) {
-          <span class="error-text">
-            @if (email?.errors?.['required']) {
-              Email é obrigatório
-            }
-            @if (email?.errors?.['email']) {
-              Por favor, insira um email válido
-            }
-          </span>
+        <span class="error-text">
+          @if (email?.errors?.['required']) {
+          Email é obrigatório
+          }
+          @if (email?.errors?.['email']) {
+          Por favor, insira um email válido
+          }
+        </span>
         }
       </div>
 
       <div class="form-group">
         <label for="password">Senha</label>
-        <input
-          type="password"
-          id="password"
-          formControlName="password"
-          placeholder="********"
-          [class.error]="password?.invalid && password?.touched"
-        />
+        <input type="password" id="password" formControlName="password" placeholder="********"
+          [class.error]="password?.invalid && password?.touched" />
         @if (password?.invalid && password?.touched) {
-          <span class="error-text">
-            @if (password?.errors?.['required']) {
-              Senha é obrigatória
-            }
-            @if (password?.errors?.['minlength']) {
-              Senha deve ter pelo menos 6 caracteres
-            }
-          </span>
+        <span class="error-text">
+          @if (password?.errors?.['required']) {
+          Senha é obrigatória
+          }
+          @if (password?.errors?.['minlength']) {
+          Senha deve ter pelo menos 6 caracteres
+          }
+        </span>
         }
       </div>
 
-      <button 
-        type="submit" 
-        class="btn btn-primary"
-        [disabled]="loading"
-      >
+      <button type="submit" class="btn btn-primary" [disabled]="loading">
         @if (loading) {
-          <span class="spinner"></span>
-          Entrando...
+        <span class="spinner"></span>
+        Entrando...
         } @else {
-          Entrar
+        Entrar
         }
       </button>
     </form>
 
     <p class="register-link">
-      Não tem uma conta? 
+      Não tem uma conta?
       <a routerLink="/sign-up">Cadastre-se aqui</a>
     </p>
   </div>
+  <footer>
+    <div>
+      <p>Essa aplicação foi criada para fins de aprendizado e portfólio.</p>
+      <p>Por favor não use senhas, dados ou informações reais.</p>
+      <p>Os dados podem ser apagados a qualquer momento.</p>
+    </div>
+  </footer>
 </div>

@@ -15,6 +15,59 @@ export class SubscriptionListComponent {
   @Output() editSubscription = new EventEmitter<Subscription>();
   @Output() deleteSubscription = new EventEmitter<string>();
 
+  readonly statusLabelMap: Record<string, string> = {
+    active: 'Ativo',
+    expired: 'Expirado',
+    canceled: 'Cancelado'
+  };
+
+  readonly paymentMethodLabelMap: Record<string, string> = {
+    'credit-card': 'Cartão de Crédito',
+    'debit-card': 'Cartão de Débito',
+    'paypal': 'PayPal',
+    'bank-transfer': 'Transferência Bancária',
+    'other': 'Outro'
+  };
+
+  readonly frequencyLabelMap: Record<string, string> = {
+    daily: 'Diário',
+    weekly: 'Semanal',
+    monthly: 'Mensal',
+    yearly: 'Anual'
+  };
+
+  readonly categoryLabelMap: Record<string, string> = {
+    'tech': 'Tecnologia',
+    'games': 'Jogos',
+    'sports': 'Esportes',
+    'news': 'Notícias',
+    'finance': 'Finanças',
+    'politics': 'Política',
+    'entertainment': 'Entretenimento',
+    'education': 'Educação',
+    'lifestyle': 'Estilo de Vida',
+    'music': 'Música',
+    'productivity': 'Produtividade',
+    'health & fitness': 'Saúde e Fitness',
+    'other': 'Outro'
+  };
+
+  getStatusLabel(status: string): string {
+    return this.statusLabelMap[status] ?? status;
+  }
+
+  getPaymentMethodLabel(method: string): string {
+    return this.paymentMethodLabelMap[method] ?? method;
+  }
+
+  getFrequencyLabel(frequency: string): string {
+    return this.frequencyLabelMap[frequency] ?? frequency;
+  }
+
+  getCategoryLabel(category: string): string {
+    return this.categoryLabelMap[category] ?? category;
+  }
+
   onEdit(subscription: Subscription): void {
     this.editSubscription.emit(subscription);
   }

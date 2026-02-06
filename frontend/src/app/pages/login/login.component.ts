@@ -46,7 +46,7 @@ export class LoginComponent {
         }
       },
       error: (error) => {
-        this.errorMessage = error.message || 'Login failed. Please try again.';
+        this.errorMessage = error.message || 'Login falhou. Por favor, tente novamente.';
         this.loading = false;
       },
       complete: () => {

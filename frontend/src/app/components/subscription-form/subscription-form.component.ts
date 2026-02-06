@@ -21,34 +21,34 @@ export class SubscriptionFormComponent implements OnInit {
   subscriptionForm!: FormGroup;
 
   frequencies = [
-    { value: 'daily', label: 'Daily' },
-    { value: 'weekly', label: 'Weekly' },
-    { value: 'monthly', label: 'Monthly' },
-    { value: 'yearly', label: 'Yearly' }
+    { value: 'daily', label: 'Diário' },
+    { value: 'weekly', label: 'Semanal' },
+    { value: 'monthly', label: 'Mensal' },
+    { value: 'yearly', label: 'Anual' }
   ];
 
   categories = [
-    { value: 'tech', label: 'Technology' },
-    { value: 'games', label: 'Games' },
-    { value: 'sports', label: 'Sports' },
-    { value: 'news', label: 'News' },
-    { value: 'finance', label: 'Finance' },
-    { value: 'politics', label: 'Politics' },
-    { value: 'entertainment', label: 'Entertainment' },
-    { value: 'education', label: 'Education' },
-    { value: 'lifestyle', label: 'Lifestyle' },
-    { value: 'music', label: 'Music' },
-    { value: 'productivity', label: 'Productivity' },
-    { value: 'health & fitness', label: 'Health & Fitness' },
-    { value: 'other', label: 'Other' },
+    { value: 'tech', label: 'Tecnologia' },
+    { value: 'games', label: 'Jogos' },
+    { value: 'sports', label: 'Esportes' },
+    { value: 'news', label: 'Notícias' },
+    { value: 'finance', label: 'Finanças' },
+    { value: 'politics', label: 'Política' },
+    { value: 'entertainment', label: 'Entretenimento' },
+    { value: 'education', label: 'Educação' },
+    { value: 'lifestyle', label: 'Estilo de Vida' },
+    { value: 'music', label: 'Música' },
+    { value: 'productivity', label: 'Produtividade' },
+    { value: 'health & fitness', label: 'Saúde e Fitness' },
+    { value: 'other', label: 'Outro' },
   ];
 
   paymentMethods = [
-    'Credit Card',
-    'Debit Card',
-    'PayPal',
-    'Bank Transfer',
-    'Other'
+    { value: 'credit-card', label: 'Cartão de Crédito' },
+    { value: 'debit-card', label: 'Cartão de Débito' },
+    { value: 'paypal', label: 'PayPal' },
+    { value: 'bank-transfer', label: 'Transferência Bancária' },
+    { value: 'other', label: 'Outro' }
   ];
 
   currencies = [

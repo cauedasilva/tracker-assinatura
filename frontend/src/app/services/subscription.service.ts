@@ -2,7 +2,7 @@ import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError, map } from 'rxjs/operators';
-import { environment } from '../../environment';
+import { environment } from '../../environment.prod';
 import { Subscription, ApiResponse, SubscriptionStats } from '../models/interfaces';
 
 @Injectable({
