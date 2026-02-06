@@ -57,7 +57,7 @@ Arcjet Middleware — Proteção contra bots e controle de requisições
 
 QStash (Upstash) — Agendamento e execução de tarefas assíncronas
 
-Front-end
+### Front-end
 
 Angular
 
@@ -117,7 +117,7 @@ DELETE /:id — Excluir assinatura
 GET /upcoming-renewals — Listar próximas renovações
 
 ## Modelos do Banco de Dados
-User
+### User
 
 name
 
@@ -127,7 +127,7 @@ password (hash)
 
 timestamps
 
-Subscription
+### Subscription
 
 name
 
