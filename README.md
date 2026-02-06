@@ -1,10 +1,15 @@
 # Tracker Assinatura – API RESTful + Front-end Angular
 
-API RESTful desenvolvida em Node.js com Express e MongoDB, juntamente com um front-end em Angular, cujo objetivo é o controle de assinaturas recorrentes.
+Projeto full stack para controle de assinaturas recorrentes, composto por uma API RESTful em Node.js e um front-end em Angular, ambos deployados no Vercel, com URLs independentes.
 
-A aplicação permite gerenciar serviços recorrentes, calcular automaticamente datas de renovação, controlar o status das assinaturas e utilizar autenticação JWT para proteger as rotas.
+O sistema permite gerenciar serviços recorrentes, calcular automaticamente datas de renovação, controlar o status das assinaturas e proteger rotas com autenticação JWT.
 
 O foco principal do projeto é o backend, porém o front-end em Angular foi desenvolvido para consumo real da API, autenticação de usuários e visualização das assinaturas.
+
+## Demonstração ao Vivo
+
+API (Backend – Node.js + Express): https://tracker-assinatura.vercel.app
+Front-end (Angular): https://tracker-assinatura-client.vercel.app
 
 ## Funcionalidades
 
@@ -62,6 +67,8 @@ QStash (Upstash) — Agendamento e execução de tarefas assíncronas
 Angular
 
 TypeScript
+
+O front-end consome a API em produção, utilizando autenticação JWT via Authorization Header
 
 ### Angular Components
 
