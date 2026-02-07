@@ -89,4 +89,8 @@ export class RegisterComponent {
   get confirmPassword() {
     return this.registerForm.get('confirmPassword');
   }
+
+  getCurrentYear(): number {
+    return new Date().getFullYear();
+  }
 }

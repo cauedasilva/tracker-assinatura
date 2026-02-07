@@ -4,7 +4,7 @@
       <div>
         <h1>Minhas assinaturas</h1>
         @if (currentUser()) {
-          <p class="user-greeting">Bem vindo, {{ currentUser()!.name }}</p>
+        <p class="user-greeting">Bem vindo, {{ currentUser()?.name }}</p>
         }
       </div>
       <div class="header-actions">
@@ -49,64 +49,46 @@
   </div>
 
   @if (upcomingRenewals().length > 0) {
-    <div class="renewals-alert">
-      <div class="alert-content">
-        <h3>Próximas renovações</h3>
-        <p>Você tem {{ upcomingRenewals().length }} assinatura(s) renovando nos próximos 7 dias</p>
-      </div>
+  <div class="renewals-alert">
+    <div class="alert-content">
+      <h3>Próximas renovações</h3>
+      <p>Você tem {{ upcomingRenewals().length }} assinatura(s) renovando nos próximos 7 dias</p>
     </div>
+  </div>
   }
 
   <div class="filters">
-    <button 
-      class="filter-btn" 
-      [class.active]="filterStatus() === 'all'"
-      (click)="setFilter('all')"
-    >
+    <button class="filter-btn" [class.active]="filterStatus() === 'all'" (click)="setFilter('all')">
       Todas ({{ stats().total }})
     </button>
-    <button 
-      class="filter-btn" 
-      [class.active]="filterStatus() === 'active'"
-      (click)="setFilter('active')"
-    >
+    <button class="filter-btn" [class.active]="filterStatus() === 'active'" (click)="setFilter('active')">
       Ativas ({{ stats().active }})
     </button>
-    <button 
-      class="filter-btn" 
-      [class.active]="filterStatus() === 'expired'"
-      (click)="setFilter('expired')"
-    >
+    <button class="filter-btn" [class.active]="filterStatus() === 'expired'" (click)="setFilter('expired')">
       Expiradas ({{ stats().expired }})
     </button>
-    <button 
-      class="filter-btn" 
-      [class.active]="filterStatus() === 'canceled'"
-      (click)="setFilter('canceled')"
-    >
+    <button class="filter-btn" [class.active]="filterStatus() === 'canceled'" (click)="setFilter('canceled')">
       Canceladas ({{ stats().canceled }})
     </button>
   </div>
 
   @if (showForm()) {
-    <div class="modal-overlay" (click)="closeForm()">
-      <div class="modal-content" (click)="$event.stopPropagation()">
-        <app-subscription-form
-          [subscription]="editingSubscription()"
-          [isEdit]="!!editingSubscription()"
-          (formSubmit)="handleFormSubmit($event)"
-          (formCancel)="closeForm()"
-        />
-      </div>
+  <div class="modal-overlay" (click)="closeForm()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <app-subscription-form [subscription]="editingSubscription()" [isEdit]="!!editingSubscription()"
+        (formSubmit)="handleFormSubmit($event)" (formCancel)="closeForm()" />
     </div>
+  </div>
   }
 
   <div class="subscriptions-content">
-    <app-subscription-list
-      [subscriptions]="filteredSubscriptions()"
-      [loading]="loading()"
-      (editSubscription)="openEditForm($event)"
-      (deleteSubscription)="handleDelete($event)"
-    />
+    <app-subscription-list [subscriptions]="filteredSubscriptions()" [loading]="loading()"
+      (editSubscription)="openEditForm($event)" (deleteSubscription)="handleDelete($event)" />
   </div>
+
+  <footer>
+    <div>
+      <p>&copy; {{ getCurrentYear() }}</p>
+    </div>
+  </footer>
 </div>

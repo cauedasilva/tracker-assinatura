@@ -198,6 +198,23 @@ h1 {
   border-radius: 12px;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 0.8rem;
+  margin-top: 2rem;
+  width: 100%;
+  display: inline-flex;
+  justify-content: end;
+}
+
+footer p {
+  color: #3a2450;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .subscriptions-page {
     padding: 1rem;

@@ -62,4 +62,8 @@ export class LoginComponent {
   get password() {
     return this.loginForm.get('password');
   }
+
+  getCurrentYear(): number {
+    return new Date().getFullYear();
+  }
 }

@@ -132,4 +132,8 @@ export class SubscriptionsComponent implements OnInit {
   private showSuccessMessage(message: string): void {
     alert(message);
   }
+
+  getCurrentYear(): number {
+    return new Date().getFullYear();
+  }
 }

@@ -142,12 +142,12 @@ input.error {
   text-decoration: underline;
 }
 
-footer {
+.disclaimer {
   margin-top: 2rem;
   text-align: center;
 }
 
-footer div {
+.disclaimer div {
   background-color: #3a2450;
   border-radius: 8px;
   padding: 1rem;
@@ -155,9 +155,26 @@ footer div {
   margin: 0 auto;
 }
 
-footer p {
+.disclaimer p {
   color: #ffffff;
   font-size: 0.9rem;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 0.8rem;
+  margin-top: 2rem;
+  width: 100%;
+  display: inline-flex;
+  justify-content: end;
+}
+
+footer p {
+  color: #ffffff;
+  font-size: 0.85rem;
+  text-align: center;
 }
 
 @media (max-width: 480px) {
