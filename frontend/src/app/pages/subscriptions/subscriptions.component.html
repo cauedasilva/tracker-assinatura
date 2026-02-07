@@ -85,10 +85,4 @@
     <app-subscription-list [subscriptions]="filteredSubscriptions()" [loading]="loading()"
       (editSubscription)="openEditForm($event)" (deleteSubscription)="handleDelete($event)" />
   </div>
-
-  <footer>
-    <div>
-      <p>&copy; {{ getCurrentYear() }}</p>
-    </div>
-  </footer>
 </div>
